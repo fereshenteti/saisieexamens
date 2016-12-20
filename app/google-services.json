@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "693572052812",
+    "firebase_url": "https://saisie-examens.firebaseio.com",
+    "project_id": "saisie-examens",
+    "storage_bucket": "saisie-examens.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693572052812:android:39636e3a2ec064e2",
+        "android_client_info": {
+          "package_name": "hentati.nejmeddine.saisieexamens"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693572052812-pkrf80pffv4p321ao1l9pu4imis71m9f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hentati.nejmeddine.saisieexamens",
+            "certificate_hash": "8AA4B6A9529773F79B7110D9C615543B981D2C02"
+          }
+        },
+        {
+          "client_id": "693572052812-s8fk65sdnpdpd28vkarsq0fdac00r8ts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEv9CthTSJ-xoqKMczs5dxOuKDBXKbFyM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693572052812-s8fk65sdnpdpd28vkarsq0fdac00r8ts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

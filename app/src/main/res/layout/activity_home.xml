@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorIcons"
+    tools:context="hentati.nejmeddine.saisieexamens.HomeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="70dp"
+        android:paddingRight="70dp">
+
+
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:id="@+id/level_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:ms_multiline="false"
+            app:ms_hint="Niveau d'études"
+            android:spinnerMode="dialog"
+            app:ms_enableFloatingLabel="true"
+            app:ms_enableErrorLabel="false"
+            app:ms_floatingLabelText="Niveau d'études"
+            app:ms_baseColor="@color/colorSecondaryText"
+            app:ms_highlightColor="@color/colorAccent"
+            app:ms_thickness="2dp"
+            app:ms_hintColor="@color/colorAccent"
+            app:ms_arrowColor="@color/colorAccent"
+            app:ms_arrowSize="16dp"
+            app:ms_alignLabels="false"
+            app:ms_floatingLabelColor="@color/colorAccent"/>
+
+
+
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:id="@+id/subject_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:theme="@color/colorIcons"
+            app:ms_multiline="false"
+            app:ms_hint="Modules"
+            android:spinnerMode="dialog"
+            app:ms_enableFloatingLabel="true"
+            app:ms_enableErrorLabel="false"
+            app:ms_floatingLabelText="Matière"
+            app:ms_baseColor="@color/colorSecondaryText"
+            app:ms_highlightColor="@color/colorAccent"
+            app:ms_thickness="2dp"
+            app:ms_hintColor="@color/colorAccent"
+            app:ms_arrowColor="@color/colorAccent"
+            app:ms_arrowSize="16dp"
+            app:ms_alignLabels="false"
+            app:ms_floatingLabelColor="@color/colorAccent"
+            android:layout_below="@id/level_spinner"
+            />
+
+
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:id="@+id/module_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:theme="@color/colorIcons"
+            app:ms_multiline="false"
+            app:ms_hint="Matières"
+            android:spinnerMode="dialog"
+            app:ms_enableFloatingLabel="true"
+            app:ms_enableErrorLabel="false"
+            app:ms_baseColor="@color/colorSecondaryText"
+            app:ms_highlightColor="@color/colorAccent"
+            app:ms_thickness="2dp"
+            app:ms_hintColor="@color/colorAccent"
+            app:ms_arrowColor="@color/colorAccent"
+            app:ms_arrowSize="16dp"
+            app:ms_alignLabels="false"
+            app:ms_floatingLabelColor="@color/colorAccent"
+            android:layout_below="@id/subject_spinner"
+            />
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/module_spinner"
+                android:layout_marginTop="30dp"
+                android:id="@+id/radiosLayout"
+                android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="tp"
+                android:textSize="15sp"
+                android:id="@+id/rbTp"
+                >
+
+            </android.support.v7.widget.AppCompatRadioButton>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="oral"
+                android:textSize="15sp"
+                android:id="@+id/rbOral"
+                >
+
+            </android.support.v7.widget.AppCompatRadioButton>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="écrit"
+                android:checked="true"
+                android:textSize="15sp"
+                android:id="@+id/rbEcrit"
+                >
+
+            </android.support.v7.widget.AppCompatRadioButton>
+            </RadioGroup>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radiosLayout"
+            android:orientation="horizontal"
+            >
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/grids"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="Grille"
+                android:textColor="@color/colorPrimaryLight"
+                android:textAllCaps="false"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="70dp"
+                android:layout_marginRight="5dp"
+                />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/fields"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="Champs"
+            android:textColor="@color/colorPrimaryLight"
+            android:textAllCaps="false"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="70dp"
+            android:layout_marginLeft="5dp"
+            />
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
