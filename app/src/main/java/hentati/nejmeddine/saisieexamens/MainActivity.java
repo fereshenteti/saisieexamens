@@ -192,28 +192,23 @@ public class MainActivity extends BaseActivity implements ValueEventListener,Vie
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
 
-
         listeEnseignants.clear();
 
-
         for (DataSnapshot keys : dataSnapshot.child("enseignants").getChildren()) {
-            //GenericTypeIndicator<HashMap<String, String>> genericTypeIndicator = new GenericTypeIndicator<HashMap<String, String>>() {};
-
-            //HashMap<String,String> hm = keys.getValue(genericTypeIndicator);
-            //String e = keys.getValue(String.class);
-
             listeEnseignants.add(new Enseignant(keys.getKey()));
-
         }
+
         ExamensHelper.getInstance(this).setEnseignants(listeEnseignants);
-        Log.i(TAG, "HomeActivity:onDataChange ====> enseignants : "+ExamensHelper.getInstance(this).getEnseignants());
 
 
+        //Log.i(TAG, "HomeActivity:onDataChange ====> enseignants : "+ExamensHelper.getInstance(this).getEnseignants());
     }
 
     @Override
     public void onCancelled(DatabaseError databaseError) {
 
     }
+
+
 
 }

@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -75,8 +77,8 @@ public class BaseActivity extends AppCompatActivity {
 
 
         //Open file path
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet(WorkbookUtil.createSafeSheetName(
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet(WorkbookUtil.createSafeSheetName(
                 ExamensHelper.getInstance(this).getmEnseignant().getCin()
         ));
 
@@ -104,11 +106,12 @@ public class BaseActivity extends AppCompatActivity {
 
         createCell(workbook, row, (short) 0, CellStyle.ALIGN_CENTER, "Code de l'étudiant", true);
 
-        createCell(workbook, row, (short) 1, CellStyle.ALIGN_CENTER, "TP", true);
+        createCell(workbook, row, (short) 1, CellStyle.ALIGN_CENTER, "ECRIT", true);
 
         createCell(workbook, row, (short) 2, CellStyle.ALIGN_CENTER, "ORAL", true);
 
-        createCell(workbook, row, (short) 3, CellStyle.ALIGN_CENTER, "ECRIT", true);
+        createCell(workbook, row, (short) 3, CellStyle.ALIGN_CENTER, "TP", true);
+
 
 
         //main content to display the data
@@ -118,9 +121,9 @@ public class BaseActivity extends AppCompatActivity {
             createCell(workbook, row, (short) 0, CellStyle.ALIGN_CENTER
                     , ExamensHelper.getInstance(this).getmNotesList().get(i).getCode(), false);
 
-            if(ExamensHelper.getInstance(this).getmNotesList().get(i).getTp() != null) {
+            if(ExamensHelper.getInstance(this).getmNotesList().get(i).getEcrit() != null) {
                 createCell(workbook, row, (short) 1, CellStyle.ALIGN_CENTER
-                        , ExamensHelper.getInstance(this).getmNotesList().get(i).getTp(), false);
+                        , ExamensHelper.getInstance(this).getmNotesList().get(i).getEcrit(), false);
             }
 
             if(ExamensHelper.getInstance(this).getmNotesList().get(i).getOral() != null) {
@@ -128,10 +131,12 @@ public class BaseActivity extends AppCompatActivity {
                         , ExamensHelper.getInstance(this).getmNotesList().get(i).getOral(), false);
             }
 
-            if(ExamensHelper.getInstance(this).getmNotesList().get(i).getEcrit() != null) {
+            if(ExamensHelper.getInstance(this).getmNotesList().get(i).getTp() != null) {
                 createCell(workbook, row, (short) 3, CellStyle.ALIGN_CENTER
-                        , ExamensHelper.getInstance(this).getmNotesList().get(i).getEcrit(), false);
+                        , ExamensHelper.getInstance(this).getmNotesList().get(i).getTp(), false);
             }
+
+
         }
 
 
@@ -176,7 +181,7 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
-    public static void createCell(XSSFWorkbook wb, Row row, short column, short halign, String value, Boolean boldFont) {
+    public static void createCell(HSSFWorkbook wb, Row row, short column, short halign, String value, Boolean boldFont) {
         Cell cell = row.createCell(column);
         cell.setCellValue(value);
         CellStyle cellStyle = wb.createCellStyle();

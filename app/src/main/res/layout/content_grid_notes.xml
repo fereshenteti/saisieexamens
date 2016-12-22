@@ -73,6 +73,7 @@
             android:id="@+id/tabs"
             android:layout_below="@id/noteView"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             >
 
             <TableRow

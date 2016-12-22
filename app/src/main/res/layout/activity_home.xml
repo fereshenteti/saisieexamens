@@ -93,6 +93,18 @@
                 android:id="@+id/radiosLayout"
                 android:orientation="horizontal">
 
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="écrit"
+                    android:checked="true"
+                    android:textSize="15sp"
+                    android:id="@+id/rbEcrit"
+                    >
+
+                </android.support.v7.widget.AppCompatRadioButton>
+
             <android.support.v7.widget.AppCompatRadioButton
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -115,17 +127,7 @@
 
             </android.support.v7.widget.AppCompatRadioButton>
 
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="écrit"
-                android:checked="true"
-                android:textSize="15sp"
-                android:id="@+id/rbEcrit"
-                >
 
-            </android.support.v7.widget.AppCompatRadioButton>
             </RadioGroup>
 
 
