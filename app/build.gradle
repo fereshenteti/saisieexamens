@@ -44,5 +44,7 @@ dependencies {
 
     compile 'com.afollestad.material-dialogs:core:0.9.1.0'
 
+    compile 'com.android.support:multidex:1.0.1'
+
 }
 apply plugin: 'com.google.gms.google-services'

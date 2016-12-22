@@ -2,17 +2,12 @@ package hentati.nejmeddine.saisieexamens;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -100,7 +96,6 @@ public class GridNotesActivity extends BaseActivity implements View.OnClickListe
         code.setText(""+i);
     }
 
-
     @Override
     public void onClick(View view) {
         if(checkConnection()) {
@@ -122,6 +117,9 @@ public class GridNotesActivity extends BaseActivity implements View.OnClickListe
                             })
                             .show();
                 }
+                else{
+                    Toast.makeText(getApplicationContext(), "Veuillez noter au moins un étudiant pour continuer !", Toast.LENGTH_SHORT).show();
+                }
 
             }
         }else {
@@ -130,7 +128,6 @@ public class GridNotesActivity extends BaseActivity implements View.OnClickListe
 
     }
 
-
     private void Suivant(){
 
         addToVector();
@@ -138,7 +135,6 @@ public class GridNotesActivity extends BaseActivity implements View.OnClickListe
         initView();
 
     }
-
 
     private void addToVector() {
 
@@ -161,7 +157,6 @@ public class GridNotesActivity extends BaseActivity implements View.OnClickListe
         }
 
     }
-
 
     private void generateList(){
 
@@ -191,18 +186,9 @@ public class GridNotesActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
-
     private boolean validateFields(){
-
-        if(code.getText().toString().equals("")) {
-            return false;
-        }
-        else{
-            return true;
-        }
-
+            return !code.getText().toString().equals("");
     }
-
 
     private int validateExistance() {
 
@@ -235,7 +221,6 @@ public class GridNotesActivity extends BaseActivity implements View.OnClickListe
 
 
     }
-
 
     private void SubmitNotes() {
 
@@ -290,9 +275,31 @@ public class GridNotesActivity extends BaseActivity implements View.OnClickListe
         HomeActivity.act.finish();
         MainActivity.act.finish();
         Toast.makeText(getApplicationContext(), "Notes enregistrées avec succès..", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(GridNotesActivity.this, MainActivity.class));
-        hideProgressDialog();
-        finish();
+
+
+        new MaterialDialog.Builder(this)
+                .title("Voulez vous générer un fichier excel pour ces notes ?")
+                .positiveText("Oui")
+                .negativeText("Non")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        showProgressDialog();
+                        generateFile();
+                        hideProgressDialog();
+                        openFolder();
+                        //startActivity(new Intent(GridNotesActivity.this, MainActivity.class));
+                        //finish();
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivity(new Intent(GridNotesActivity.this, MainActivity.class));
+                        finish();
+                    }
+                })
+                .show();
 
 
     }
