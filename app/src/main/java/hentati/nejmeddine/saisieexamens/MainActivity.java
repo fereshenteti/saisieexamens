@@ -2,6 +2,7 @@ package hentati.nejmeddine.saisieexamens;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
@@ -28,12 +29,14 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
 
 public class MainActivity extends BaseActivity implements ValueEventListener,View.OnClickListener {
 
     private static final String TAG = "userCheck";
-    MaterialEditText cin;
-    AppCompatButton continuer;
+    public MaterialEditText cin;
+    public AppCompatButton continuer;
+    public TextView loading;
     public static Activity act;
 
     //Firebase variables
@@ -47,6 +50,7 @@ public class MainActivity extends BaseActivity implements ValueEventListener,Vie
     private boolean isMawjoud = false;
     private boolean isFergha = false;
     private boolean hasChanged = false;
+    //private boolean completed = false;
 
     private Enseignant mEnseignant;
 
@@ -94,6 +98,8 @@ public class MainActivity extends BaseActivity implements ValueEventListener,Vie
         continuer = (AppCompatButton) findViewById(R.id.continuer);
         continuer.setOnClickListener(this);
 
+        loading = (TextView) findViewById(R.id.loading);
+
     }
 
     // 3
@@ -112,7 +118,7 @@ public class MainActivity extends BaseActivity implements ValueEventListener,Vie
                 });
             } else {
                 //this is toasted when the input in empty or different than exactly 8 numbers
-                Toast.makeText(getApplicationContext(), "Veuillez entrer les 8 chiffres de votre mCin !", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Veuillez entrer les 8 chiffres de votre CIN !", Toast.LENGTH_LONG).show();
             }
 
     }
@@ -120,7 +126,8 @@ public class MainActivity extends BaseActivity implements ValueEventListener,Vie
     // 4
     private void writeNewEnseignant(String _cin) {
 
-        if(!ExamensHelper.getInstance(this).getEnseignants().isEmpty()) {
+        if(ExamensHelper.getInstance(this).getEnseignants() != null
+               && !ExamensHelper.getInstance(this).getEnseignants().isEmpty()) {
 
             for (Enseignant enseignant : ExamensHelper.getInstance(this).getEnseignants()){
 
@@ -140,8 +147,10 @@ public class MainActivity extends BaseActivity implements ValueEventListener,Vie
                 }
             }
             isFergha = false;
-        }else{
+        }else if(ExamensHelper.getInstance(this).getEnseignants() != null){
             isFergha = true;
+        }else if(ExamensHelper.getInstance(this).getEnseignants() == null) {
+            Toast.makeText(this, "Veuillez attendre le chargement svp", Toast.LENGTH_SHORT).show();
         }
 
         Log.w(TAG, "MainActivity: isMawjoud = "+isMawjoud);
@@ -183,8 +192,6 @@ public class MainActivity extends BaseActivity implements ValueEventListener,Vie
     public void onClick(View view) {
         if (view.getId() == R.id.continuer) {
             validateCIN();
-            Log.w(TAG, "MainActivity:validateCIN");
-
         }
     }
 
@@ -199,16 +206,18 @@ public class MainActivity extends BaseActivity implements ValueEventListener,Vie
         }
 
         ExamensHelper.getInstance(this).setEnseignants(listeEnseignants);
+        Log.w(TAG, "MainActivity: liste enseignants : " + ExamensHelper.getInstance(this).getEnseignants().size());
 
-
-        //Log.i(TAG, "HomeActivity:onDataChange ====> enseignants : "+ExamensHelper.getInstance(this).getEnseignants());
+        continuer.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        continuer.setEnabled(true);
+        loading.setVisibility(View.INVISIBLE);
+        
     }
 
     @Override
     public void onCancelled(DatabaseError databaseError) {
 
     }
-
 
 
 }
