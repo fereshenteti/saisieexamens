@@ -23,7 +23,7 @@ public class Level implements Serializable {
                     , "Uro", "Neuro", "Inf", "Ped", "Chir", "Neph", "Pneum", "Psy", "Hemato"};
 
     private String[] D1 = {"Parasitologie", "Anapath gle", "Anglais", "Imagerie mle"
-                    , "Microbiologie", "T Digectif", "Cardiologie", "Carcinologie", "Hematologie"
+                    , "Microbiologie", "T Digestif", "Cardiologie", "Carcinologie", "Hematologie"
                     , "Pharmacologie", "A Pulmonaire", "Philosophie des Sc", "Statistiques"};
 
     private String[] Digestif = {"Radio", "Anapath", "Gastro", "Chirurgie"};
@@ -85,7 +85,7 @@ public class Level implements Serializable {
 
             case "Sémiologie" : return Semiologie;
 
-            case "T Digectif" : return Digestif;
+            case "T Digestif" : return Digestif;
 
             case "Cardiologie" : return Cardiologie;
 

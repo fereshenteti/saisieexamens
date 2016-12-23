@@ -211,7 +211,7 @@ public class MainActivity extends BaseActivity implements ValueEventListener,Vie
         continuer.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         continuer.setEnabled(true);
         loading.setVisibility(View.INVISIBLE);
-        
+
     }
 
     @Override

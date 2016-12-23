@@ -158,7 +158,7 @@ public class HomeActivity extends BaseActivity implements ValueEventListener,Vie
 
     private void checkModule(String s) {
 
-        if(s.equals("Sémiologie") || s.equals("T Digectif") || s.equals("Cardiologie") || s.equals("A Pulmonaire")
+        if(s.equals("Sémiologie") || s.equals("T Digestif") || s.equals("Cardiologie") || s.equals("A Pulmonaire")
                 || s.equals("A Locomoteur") || s.equals("A Urinaire") || s.equals("Endocrinologie")
                 || s.equals("Gynécologie") || s.equals("Pédiatrie") || s.equals("Sys Nerveux") ){
 
