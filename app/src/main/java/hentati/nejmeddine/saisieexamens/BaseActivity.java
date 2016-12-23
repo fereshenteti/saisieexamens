@@ -1,8 +1,10 @@
 package hentati.nejmeddine.saisieexamens;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -53,21 +55,16 @@ public class BaseActivity extends AppCompatActivity {
 
     public boolean checkConnection() {
 
-        // get Connectivity Manager object to check connection
-        ConnectivityManager connec =
-                (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        // Check for network connections
-        if (connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
-                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED) {
-            return true;
-        }
-        else if (
-                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
-                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED) {
-            return false;
+        NetworkInfo activeNetworkInfo = connectivityManager
+                .getActiveNetworkInfo();
+
+        if(activeNetworkInfo != null){
+            return activeNetworkInfo.isConnected();
         }
         return false;
+
     }
 
 
@@ -76,8 +73,8 @@ public class BaseActivity extends AppCompatActivity {
 
 
         //Open file path
-        HSSFWorkbook workbook = new HSSFWorkbook();
-        HSSFSheet sheet = workbook.createSheet(WorkbookUtil.createSafeSheetName(
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet(WorkbookUtil.createSafeSheetName(
                 ExamensHelper.getInstance(this).getmEnseignant().getCin()
         ));
 
@@ -180,7 +177,7 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
-    public static void createCell(HSSFWorkbook wb, Row row, short column, short halign, String value, Boolean boldFont) {
+    public static void createCell(XSSFWorkbook wb, Row row, short column, short halign, String value, Boolean boldFont) {
         Cell cell = row.createCell(column);
         cell.setCellValue(value);
         CellStyle cellStyle = wb.createCellStyle();

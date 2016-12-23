@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
 import android.util.Log;
@@ -208,7 +209,7 @@ public class MainActivity extends BaseActivity implements ValueEventListener,Vie
         ExamensHelper.getInstance(this).setEnseignants(listeEnseignants);
         Log.w(TAG, "MainActivity: liste enseignants : " + ExamensHelper.getInstance(this).getEnseignants().size());
 
-        continuer.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        continuer.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
         continuer.setEnabled(true);
         loading.setVisibility(View.INVISIBLE);
 
