@@ -99,8 +99,24 @@ public class MainActivity extends BaseActivity implements ValueEventListener,Vie
         continuer = (AppCompatButton) findViewById(R.id.continuer);
         continuer.setOnClickListener(this);
 
-        loading = (TextView) findViewById(R.id.loading);
+        continuer.setBackgroundColor(ContextCompat.getColor(this, R.color.colorSecondaryText));
+        continuer.setEnabled(false);
 
+        loading = (TextView) findViewById(R.id.loading);
+        loading.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(ExamensHelper.getInstance(this).isLoaded()) {
+            continuer.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            continuer.setEnabled(true);
+            loading.setVisibility(View.INVISIBLE);
+        }else {
+            initFirebase();
+            initView();
+        }
     }
 
     // 3
@@ -176,6 +192,10 @@ public class MainActivity extends BaseActivity implements ValueEventListener,Vie
         }
 
         startActivity(new Intent(MainActivity.this, HomeActivity.class));
+        continuer.setBackgroundColor(ContextCompat.getColor(this, R.color.colorSecondaryText));
+        continuer.setEnabled(false);
+        loading.setVisibility(View.VISIBLE);
+
 
     }
 

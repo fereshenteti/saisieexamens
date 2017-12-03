@@ -406,7 +406,7 @@ public class NotesActivity extends BaseActivity implements View.OnClickListener 
 
             Double _noteEcrit = Double.parseDouble(noteEcrit.getText().toString());
 
-            if (_noteEcrit >= 0 && _noteEcrit <= 20){
+            if (_noteEcrit >= 0 && _noteEcrit <= 100){
 
                 if(noteEcrit.getText().toString().contains(".")) {
                     String dec = noteEcrit.getText().toString()
@@ -431,7 +431,7 @@ public class NotesActivity extends BaseActivity implements View.OnClickListener 
 
             }
             else{
-                noteEcrit.setError("Entrez une note entre 0 et 20 !");
+                noteEcrit.setError("Entrez une note entre 0 et 100 !");
 
                 return false;
             }

@@ -19,7 +19,15 @@ public class ExamensHelper {
 
     private String profLevel, profSubject, profModule, noteType;
 
-    private boolean isModule;
+    public boolean isLoaded() {
+        return isLoaded;
+    }
+
+    public void setLoaded(boolean loaded) {
+        isLoaded = loaded;
+    }
+
+    private boolean isLoaded;
 
     private Context mContext;
 

@@ -34,14 +34,12 @@ public class BaseActivity extends AppCompatActivity {
 
     private ProgressDialog mProgressDialog;
 
-
     public void showProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);
             mProgressDialog.setCancelable(false);
             mProgressDialog.setMessage("Loading...");
         }
-
 
         mProgressDialog.show();
     }
@@ -51,7 +49,6 @@ public class BaseActivity extends AppCompatActivity {
             mProgressDialog.dismiss();
         }
     }
-
 
     public boolean checkConnection() {
 
@@ -67,14 +64,12 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
-
-
     public void generateFile() {
 
 
         //Open file path
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet(WorkbookUtil.createSafeSheetName(
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet(WorkbookUtil.createSafeSheetName(
                 ExamensHelper.getInstance(this).getmEnseignant().getCin()
         ));
 
@@ -177,7 +172,7 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
-    public static void createCell(XSSFWorkbook wb, Row row, short column, short halign, String value, Boolean boldFont) {
+    public static void createCell(HSSFWorkbook wb, Row row, short column, short halign, String value, Boolean boldFont) {
         Cell cell = row.createCell(column);
         cell.setCellValue(value);
         CellStyle cellStyle = wb.createCellStyle();
@@ -188,7 +183,6 @@ public class BaseActivity extends AppCompatActivity {
         cellStyle.setFont(f);
         cell.setCellStyle(cellStyle);
     }
-
 
     public void openFolder(){
         String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/saisie examens/";
